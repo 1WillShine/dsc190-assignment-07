@@ -1,0 +1,13 @@
+stages:
+  clean:
+    cmd: python pipeline.py clean data/raw/events.csv data/clean/events.csv
+    deps: [pipeline.py, data/raw/events.csv]
+    outs: [data/clean/events.csv]
+  transform:
+    cmd: python pipeline.py transform data/clean/events.csv data/transformed/events.csv
+    deps: [pipeline.py, data/clean/events.csv]
+    outs: [data/transformed/events.csv]
+  features:
+    cmd: python pipeline.py features data/transformed/events.csv data/features/events.csv
+    deps: [pipeline.py, data/transformed/events.csv]
+    outs: [data/features/events.csv]
